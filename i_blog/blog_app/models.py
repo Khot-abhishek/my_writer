@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.html import format_html
-
+from tinymce.models import HTMLField
 # Create your models here.
 
 class Category(models.Model):
@@ -19,7 +19,7 @@ class Category(models.Model):
 class Post(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    content = models.TextField()
+    content = HTMLField()
     image = models.ImageField(upload_to='post/')
     url = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
