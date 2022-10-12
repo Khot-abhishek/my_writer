@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 
 # Create your models here.
 
@@ -11,6 +12,9 @@ class Category(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def image_thumbnail(self):
+        return format_html("<img src='/media/{}' style='width:40px; height:40px' >".format(self.image))
 
 class Post(models.Model):
     category_id = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -23,3 +27,7 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
+    
+    def image_thumbnail(self):
+        return format_html("<img src='/media/{}' style='width:40px; height:40px' >".format(self.image))
+    
